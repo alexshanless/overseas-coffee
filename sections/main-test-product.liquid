@@ -1,9 +1,20 @@
 <h2>{{product.title}}</h2>
 <img src="{{product.featured_image | img_url:'300x'}}" />
 
-<h4>{{section.settings.tax}} </h4>
-<h4>{{section.settings.shipping}} </h4>
+{% for block in section.blocks%}
 
+{%case block.type %}
+  {% when "tax_notice_block" %}
+     <h4>{{block.settings.tax_notice_text}}</h4>
+     
+  {% when "shipping_notice_block" %}
+     <h4>{{block.settings.shipping_notice_text}}</h4>
+
+   {% when "product_price_block" %}
+    <h4>{{product.price}} </h4>
+{%endcase%}
+
+{%endfor%}
 
 {%if section.settings.show_reviews%}
 <h4>5 stars</h4>
@@ -15,22 +26,44 @@
     "name":"product page content",
     "settings": [
         {
-            "id":"tax",
-            "label":"tax-notice",
-            "type":"text"
-        },
-         {
-            "id":"shipping",
-            "label":"shipping-notice",
-            "type":"text"
-        },
-        {
             "id":"show_reviews",
             "label":"show reviews?",
             "type":"checkbox"
         }
 
 
+    ],
+    "blocks":[
+        {
+            "type":"tax_notice_block",
+            "name":"Tax notice",
+            "limit":1,
+            "settings":[
+                {
+                    "id":"tax_notice_text",
+                    "label":"Enter text notice",
+                    "type":"text"
+                }
+            ]
+        },
+        {
+            "type":"shipping_notice_block",
+            "name":"Shipping notice",
+            "limit":1,
+            "settings":[
+                {
+                "id":"shipping_notice_text",
+                "label":"Type shipping notice",
+                "type":"text"
+                }
+            ]
+        },{
+            "type":"product_price_block",
+            "name":"Product price",
+            "limit":1,
+            "settings":[]
+        }
+        
     ]
 }
 
