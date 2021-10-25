@@ -2117,7 +2117,7 @@ details-disclosure > details {
   width: 100%;
 }
 
-.testimonial-card:focus{
+.testimonial-card:focus {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .testimonial-card {
@@ -2141,4 +2141,19 @@ details-disclosure > details {
 }
 .testimonial-name {
   text-align: center;
+}
+
+.coffee-info {
+  width: 100%;
+}
+
+.coffee-indicator {
+  display: flex;
+}
+
+.coffee-indicator svg {
+  max-height: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 35px;
 }
